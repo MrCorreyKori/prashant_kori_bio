@@ -1,0 +1,265 @@
+/* Custom styles on top of Tailwind
+   This file uses regular CSS so it works correctly
+   when Tailwind is loaded via CDN. */
+
+/* --- Sections & Headings --- */
+
+.section-title {
+  font-family: "Poppins", system-ui, sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  font-size: 1.75rem;
+  margin-bottom: 0.75rem;
+}
+
+@media (min-width: 640px) {
+  .section-title {
+    font-size: 2rem;
+  }
+}
+
+/* --- Navigation --- */
+
+.nav-link {
+  position: relative;
+  color: rgb(148 163 184);
+  text-decoration: none;
+  transition: color 0.25s ease, transform 0.25s ease;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -0.35rem;
+  width: 0;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #0ea5e9, #22c55e);
+  transition: width 0.25s ease;
+}
+
+.nav-link:hover {
+  color: #f9fafb;
+  transform: translateY(-1px);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.mobile-nav-link {
+  display: block;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.85);
+  color: rgb(226 232 240);
+  text-decoration: none;
+  transition: color 0.25s ease, background-color 0.25s ease;
+}
+
+.mobile-nav-link:first-child {
+  padding-top: 0;
+}
+
+.mobile-nav-link:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.mobile-nav-link:hover {
+  color: white;
+  background-color: rgba(15, 23, 42, 0.9);
+}
+
+/* --- Cards (Education / Career etc.) --- */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  border-radius: 1.25rem;
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  background: radial-gradient(circle at top left, #fefce8, #f9fafb 40%, #e0f2fe);
+  padding: 1.25rem;
+  box-shadow:
+    0 18px 45px rgba(15, 23, 42, 0.08),
+    0 0 0 1px rgba(255, 255, 255, 0.9);
+  transition:
+    transform 0.26s ease,
+    box-shadow 0.26s ease,
+    border-color 0.26s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(251, 191, 36, 0.8);
+  box-shadow:
+    0 25px 55px rgba(15, 23, 42, 0.16),
+    0 0 0 1px rgba(250, 250, 249, 0.95);
+}
+
+.card-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.25rem;
+  width: 2.25rem;
+  border-radius: 999px;
+  background: radial-gradient(circle at 30% 0, #facc15, #fde68a);
+  box-shadow: 0 8px 18px rgba(250, 204, 21, 0.55);
+}
+
+.card-title {
+  font-family: "Poppins", system-ui, sans-serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: rgb(15 23 42);
+}
+
+.card-body {
+  font-size: 0.935rem;
+  line-height: 1.6;
+  color: rgb(71 85 105);
+}
+
+/* --- Gallery --- */
+
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1.25rem;
+  border: 1px solid rgba(15, 23, 42, 0.9);
+  background: radial-gradient(circle at top, rgba(15, 23, 42, 0.9), #020617);
+  box-shadow:
+    0 18px 40px rgba(15, 23, 42, 0.9),
+    0 0 0 1px rgba(148, 163, 184, 0.25);
+  cursor: pointer;
+  padding: 0;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.gallery-item:focus-visible {
+  outline: 2px solid #0ea5e9;
+  outline-offset: 3px;
+}
+
+.gallery-item:hover {
+  transform: translateY(-6px) scale(1.01);
+  border-color: rgba(56, 189, 248, 0.9);
+  box-shadow:
+    0 28px 70px rgba(15, 23, 42, 1),
+    0 0 0 1px rgba(56, 189, 248, 0.6);
+}
+
+.gallery-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease-out, filter 0.4s ease-out;
+  filter: saturate(1.05);
+}
+
+.gallery-item::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.gallery-item:hover .gallery-image {
+  transform: scale(1.06);
+  filter: saturate(1.2);
+}
+
+.gallery-item:hover::before {
+  opacity: 1;
+}
+
+.gallery-badge {
+  position: absolute;
+  left: 0.75rem;
+  bottom: 0.75rem;
+  padding: 0.3rem 0.85rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: rgb(248 250 252);
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.75));
+  backdrop-filter: blur(12px);
+}
+
+/* --- Social thumbnails / forms (future use) --- */
+
+.social-thumb {
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: 0.75rem;
+  background-color: rgba(15, 23, 42, 0.9);
+}
+
+.form-input {
+  width: 100%;
+  border-radius: 0.75rem;
+  border: 1px solid rgb(51 65 85);
+  background-color: rgba(15, 23, 42, 0.85);
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  color: rgb(248 250 252);
+  box-shadow: inset 0 1px 2px rgba(15, 23, 42, 0.85);
+}
+
+.form-input::placeholder {
+  color: rgb(107 114 128);
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #0ea5e9;
+  box-shadow:
+    0 0 0 1px rgba(14, 165, 233, 0.9),
+    0 0 0 4px rgba(56, 189, 248, 0.3);
+}
+
+/* --- Reveal on scroll animation --- */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.6s ease-out,
+    transform 0.6s ease-out;
+}
+
+.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- Scroll indicator animation --- */
+
+.scroll-indicator span:nth-child(2) span {
+  animation: scrollDot 1.5s infinite;
+}
+
+@keyframes scrollDot {
+  0% {
+    transform: translateY(0);
+    opacity: 0.9;
+  }
+  50% {
+    transform: translateY(12px);
+    opacity: 0.35;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 0.9;
+  }
+}
